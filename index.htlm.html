@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta CVale · Diego Erazo</title>
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --navy-soft: #3A4D75;
+    --teal: #0BA89A;
+    --teal-light: #E6F7F5;
+    --bg: #F5F7FA;
+    --card: #FFFFFF;
+    --text: #2D3142;
+    --muted: #6B7280;
+    --border: #E5E9F0;
+    --gold: #D4A857;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  /* HEADER */
+  header.top { background: var(--navy); padding: 14px 0; }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-weight: 800; font-size: 22px; color: #fff; letter-spacing: 0.5px; }
+  .logo span { color: var(--teal); }
+  .tagline { font-size: 13px; color: #C9D2E3; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* HERO */
+  .hero { padding: 56px 0 40px; }
+  .hero h1 { font-size: 32px; color: var(--navy); margin-bottom: 14px; font-weight: 800; }
+  .hero p.lead { font-size: 17px; color: var(--muted); max-width: 700px; margin-bottom: 24px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tag {
+    background: var(--teal-light); color: var(--teal);
+    border: 1px solid var(--teal); font-size: 13px; font-weight: 600;
+    padding: 6px 14px; border-radius: 999px;
+  }
+
+  /* SECTIONS */
+  section { padding: 36px 0; }
+  .section-label {
+    font-size: 13px; font-weight: 700; color: var(--teal);
+    text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px;
+  }
+  .section-title { font-size: 26px; font-weight: 800; color: var(--navy); margin-bottom: 24px; }
+
+  /* STATS */
+  .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .stat-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px;
+  }
+  .stat-card .num { font-size: 38px; font-weight: 800; color: var(--teal); margin-bottom: 8px; line-height: 1; }
+  .stat-card .desc { font-size: 14px; color: var(--text); margin-bottom: 10px; }
+  .stat-card .src { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* RETOS */
+  .reto-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px; margin-bottom: 16px;
+    display: flex; gap: 18px; align-items: flex-start;
+  }
+  .reto-num {
+    flex: 0 0 auto; width: 40px; height: 40px;
+    background: var(--navy); color: #fff; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 16px;
+  }
+  .reto-content h3 { font-size: 18px; color: var(--navy); margin-bottom: 6px; font-weight: 700; }
+  .reto-content p { font-size: 15px; color: var(--text); }
+
+  /* SESSIONS */
+  .session-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 26px; margin-bottom: 18px;
+  }
+  .session-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; flex-wrap: wrap; }
+  .session-num {
+    flex: 0 0 auto; width: 42px; height: 42px;
+    background: var(--teal); color: #fff; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 17px;
+  }
+  .session-head h3 { font-size: 19px; color: var(--navy); font-weight: 800; }
+  .optional-tag {
+    margin-left: auto; font-size: 12px; font-weight: 700; color: var(--gold);
+    border: 1px solid var(--gold); padding: 3px 10px;
+    border-radius: 999px; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .session-card .objective {
+    font-size: 15px; font-style: italic; color: var(--navy-soft);
+    margin-bottom: 14px; padding-left: 14px; border-left: 3px solid var(--teal);
+  }
+  .session-card .subhead {
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.5px; color: var(--muted); margin: 14px 0 8px;
+  }
+  .session-card ul { padding-left: 20px; font-size: 15px; color: var(--text); }
+  .session-card ul li { margin-bottom: 7px; }
+  .session-card .takeaway {
+    margin-top: 14px; background: var(--teal-light);
+    border-radius: 10px; padding: 12px 16px; font-size: 14px; color: var(--navy);
+  }
+  .session-card .takeaway b { color: var(--teal); }
+
+  /* PLATFORM NOTE */
+  .platform-note {
+    background: var(--card); border: 1px dashed var(--border);
+    border-radius: 14px; padding: 22px 24px; font-size: 15px; color: var(--text);
+  }
+  .platform-note b { color: var(--navy); }
+
+  /* OBJECTIVES */
+  .obj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .obj-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 22px; text-align: center;
+  }
+  .obj-card .emoji { font-size: 30px; margin-bottom: 10px; }
+  .obj-card h4 { font-size: 16px; color: var(--navy); margin-bottom: 8px; font-weight: 800; }
+  .obj-card p { font-size: 14px; color: var(--muted); }
+
+  /* INVESTMENT */
+  .inv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: stretch; }
+  .inv-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px; display: flex; flex-direction: column;
+  }
+  .inv-card.featured { border: 2px solid var(--teal); box-shadow: 0 8px 24px rgba(11,168,154,0.12); }
+  .inv-card .badge {
+    align-self: flex-start; background: var(--teal); color: #fff;
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; padding: 4px 10px; border-radius: 999px; margin-bottom: 12px;
+  }
+  .inv-card h3 { font-size: 17px; color: var(--navy); margin-bottom: 6px; font-weight: 800; }
+  .inv-card .price { font-size: 28px; font-weight: 800; color: var(--teal); margin-bottom: 2px; }
+  .inv-card .price-strike { font-size: 14px; color: var(--muted); text-decoration: line-through; margin-bottom: 4px; }
+  .inv-card .price-note { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+  .inv-card ul { padding-left: 18px; font-size: 14px; color: var(--text); flex-grow: 1; }
+  .inv-card ul li { margin-bottom: 8px; }
+  .inv-card ul li .opt { color: var(--gold); font-weight: 700; font-size: 12px; }
+  .inv-card .saving {
+    margin-top: 12px; background: var(--teal-light); color: var(--teal);
+    font-size: 13px; font-weight: 700; padding: 8px 12px;
+    border-radius: 8px; text-align: center;
+  }
+  .inv-card .footnote {
+    font-size: 12px; color: var(--muted); margin-top: 14px;
+    padding-top: 14px; border-top: 1px solid var(--border);
+  }
+
+  .schedule-note {
+    margin-top: 22px; background: var(--navy); color: #fff;
+    border-radius: 14px; padding: 18px 22px; font-size: 14px; text-align: center;
+  }
+  .schedule-note b { color: var(--teal); }
+  .payment-note { margin-top: 14px; font-size: 13px; color: var(--muted); text-align: center; }
+
+  /* HONEST NOTE */
+  .honest-note {
+    background: #FFF8EC; border: 1px solid var(--gold);
+    border-radius: 14px; padding: 20px 24px; margin-bottom: 24px; font-size: 15px; color: var(--text);
+  }
+  .honest-note b { color: var(--navy); }
+
+  /* BIO */
+  .bio-card {
+    background: var(--navy); border: 1px solid var(--navy);
+    border-radius: 14px; padding: 28px; display: flex; gap: 24px; align-items: center;
+  }
+  .bio-photo {
+    flex: 0 0 auto; width: 110px; height: 110px; border-radius: 50%;
+    background: var(--teal-light); border: 2px solid var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: var(--teal); text-align: center; font-weight: 700; overflow: hidden;
+  }
+  .bio-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .bio-text h3 { font-size: 19px; color: #fff; margin-bottom: 2px; font-weight: 800; }
+  .bio-text .role { font-size: 14px; color: var(--teal); font-weight: 600; margin-bottom: 12px; }
+  .bio-text p { font-size: 14px; color: #C9D2E3; margin-bottom: 16px; }
+  .bio-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .bio-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18);
+    color: #fff; font-size: 13px; font-weight: 600;
+    padding: 7px 14px; border-radius: 999px; text-decoration: none;
+    transition: background 0.15s ease;
+  }
+  .bio-link:hover { background: rgba(255,255,255,0.16); }
+
+  /* WHATSAPP CTA */
+  .cta-banner {
+    background: var(--navy); border-radius: 14px; padding: 32px 28px;
+    text-align: center;
+  }
+  .cta-banner h3 { font-size: 21px; color: #fff; font-weight: 800; margin-bottom: 10px; }
+  .cta-banner p { font-size: 15px; color: #C9D2E3; max-width: 560px; margin: 0 auto 22px; }
+  .cta-button {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--teal); color: #fff; font-size: 16px; font-weight: 700;
+    padding: 13px 28px; border-radius: 999px; text-decoration: none;
+    transition: opacity 0.15s ease;
+  }
+  .cta-button:hover { opacity: 0.9; }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy); color: #C9D2E3;
+    padding: 28px 0; text-align: center; font-size: 13px; margin-top: 24px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 760px) {
+    .stats-grid, .obj-grid, .inv-grid { grid-template-columns: 1fr; }
+    .bio-card { flex-direction: column; text-align: center; }
+    .bio-links { justify-content: center; }
+    .hero h1 { font-size: 26px; }
+    .section-title { font-size: 22px; }
+    .optional-tag { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="logo">CV<span>ale!</span></div>
+    <div class="tagline">Propuesta personalizada</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <h1>Hola Diego, esto es para ti 👋</h1>
+    <p class="lead">
+      Tienes casi 8 años de experiencia sólida, tres posgrados y logros que muy pocos candidatos pueden mostrar. El reto ahora es aprender a moverte en un mercado laboral que nunca tuviste que navegar desde afuera — y hacerlo con estrategia, sin improvisar.
+    </p>
+    <div class="tags">
+      <span class="tag">España · Valladolid</span>
+      <span class="tag">Colombia como plan B</span>
+      <span class="tag">Consultor / Ingeniero de Calidad / Mejora Continua</span>
+      <span class="tag">Empresas grandes · Procesos definidos</span>
+      <span class="tag">Plan de 90 días en España</span>
+    </div>
+  </div>
+</div>
+
+<!-- CONTEXTO DE MERCADO -->
+<section>
+  <div class="wrap">
+    <div class="section-label">El contexto del mercado</div>
+    <div class="section-title">Lo que está pasando hoy</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="num">10,83 %</div>
+        <div class="desc">Tasa de paro en España en el primer trimestre de 2026. Esto te da contexto real: el mercado español es más competido que el colombiano, y eso hace que la estrategia y el orden de tus pasos importen más que nunca.</div>
+        <div class="src">INE, EPA T1 2026</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">~80 %</div>
+        <div class="desc">De las vacantes en España nunca se publican: se cubren por red de contactos, candidatura espontánea o procesos internos. Por eso buscar empleo activo no es solo postular — es llegar a las empresas antes de que publiquen.</div>
+        <div class="src">Estudio Adecco, vía primerempleo.com</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">4,9 %</div>
+        <div class="desc">Tasa de desempleo global proyectada para 2026, equivalente a cerca de 186 millones de personas. El mercado laboral está estancado en casi todo el mundo — moverse con estrategia marca la diferencia frente a quienes esperan pasivamente.</div>
+        <div class="src">OIT, Tendencias Mundiales del Empleo 2026</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">87 %</div>
+        <div class="desc">De los reclutadores en el mundo usan LinkedIn de forma regular para buscar candidatos. Tener un perfil bien posicionado ya no es opcional: es el canal donde más te van a encontrar, en España, en Colombia o donde sea.</div>
+        <div class="src">Kinsta, Estadísticas LinkedIn 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RETOS -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Tus retos en esta búsqueda</div>
+    <div class="section-title">Lo que vamos a resolver juntos</div>
+
+    <div class="reto-card">
+      <div class="reto-num">1</div>
+      <div class="reto-content">
+        <h3>Tienes experiencia, pero no tienes estrategia</h3>
+        <p>Nunca antes habías buscado trabajo desde afuera: siempre creciste dentro de la misma organización. Eso es una fortaleza, pero también significa que no tienes un mapa de cómo funciona el mercado, cómo llegar a las empresas que te interesan antes de que publiquen la vacante, ni cómo priorizar tus esfuerzos en un horizonte de 90 días en España. Eso lo vamos a construir juntos, con fechas y pasos concretos.</p>
+      </div>
+    </div>
+
+    <div class="reto-card">
+      <div class="reto-num">2</div>
+      <div class="reto-content">
+        <h3>Tu trayectoria necesita una narrativa, no un listado</h3>
+        <p>Ocho años en una sola empresa, con cuatro roles distintos y crecimiento progresivo, puede leerse como estancamiento si no se cuenta bien — o como una historia de solidez, criterio y liderazgo si se cuenta correctamente. Hay que convertir esa trayectoria en una narrativa clara, coherente y adaptada al mercado europeo, donde el lenguaje, las referencias y los marcos normativos son distintos a Colombia.</p>
+      </div>
+    </div>
+
+    <div class="reto-card">
+      <div class="reto-num">3</div>
+      <div class="reto-content">
+        <h3>Eres invisible donde importa — y puedes cambiar eso sin "venderte"</h3>
+        <p>No necesitas publicar contenido en LinkedIn ni convertirte en influencer de calidad. Pero sí necesitas que cuando un reclutador de Bureau Veritas, SGS o TÜV Rheinland en España busque "auditor ISO 9001" o "consultor mejora continua", aparezcas. Eso es técnica y palabras clave, no personalidad. Y hay una red que ya tienes y que probablemente no estás usando: la de tu maestría en Valladolid.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SESIONES -->
+<section>
+  <div class="wrap">
+    <div class="section-label">La ruta de acompañamiento</div>
+    <div class="section-title">5 sesiones personalizadas 1:1 con Esteban Rubiano</div>
+
+    <!-- SESION 1 -->
+    <div class="session-card">
+      <div class="session-head">
+        <div class="session-num">1</div>
+        <h3>Cómo funciona el mercado laboral y diagnóstico de tu perfil</h3>
+      </div>
+      <div class="objective">
+        Objetivo: que entiendas cómo se mueve realmente el mercado laboral español y tengas un diagnóstico claro de tu perfil, para dejar de buscar empleo de forma pasiva y empezar a hacerlo de forma activa y estratégica.
+      </div>
+      <div class="subhead">En esta sesión</div>
+      <ul>
+        <li>Te explico cómo funciona el mercado laboral hoy: qué es la búsqueda activa de empleo, por qué la mayoría de vacantes nunca se publican, y cómo eso cambia tu forma de buscar trabajo.</li>
+        <li>Hacemos un diagnóstico de tu perfil: fortalezas, vacíos y cómo te posicionas hoy frente a lo que pide el mercado español en calidad y mejora continua.</li>
+        <li>Revisamos tus 2-3 procesos activos: en qué etapa están y qué te dice ese feedback sobre lo que buscas.</li>
+        <li>Definimos el punto de partida de tu plan de 90 días: primeros pasos y prioridades.</li>
+      </ul>
+      <div class="takeaway"><b>Te llevas:</b> diagnóstico de tu perfil + guía de búsqueda activa de empleo aplicada a tu caso.</div>
+    </div>
+
+    <!-- SESION 2 -->
+    <div class="session-card">
+      <div class="session-head">
+        <div class="session-num">2</div>
+        <h3>Mapa de empresas y narrativa de tu trayectoria</h3>
+      </div>
+      <div class="objective">
+        Objetivo: tener claro a qué empresas apuntar y una narrativa de tus 8 años de experiencia que cualquier reclutador entienda en 2 minutos.
+      </div>
+      <div class="subhead">En esta sesión</div>
+      <ul>
+        <li>Construimos tu mapa de empresas objetivo: consultoras de certificación (Bureau Veritas, SGS, TÜV Rheinland, DNV, AENOR, Lloyd's Register), industriales grandes con áreas de calidad, y multinacionales en Castilla y León o Madrid.</li>
+        <li>Identificamos tu ángulo de entrada más fuerte: tus certificaciones TÜV Rheinland y Bureau Veritas son puerta de entrada natural a esas organizaciones.</li>
+        <li>Construimos tu narrativa profesional: de analista a director en 8 años no es falta de movilidad, es una historia de confianza ganada y resultados medibles.</li>
+        <li>Preparamos tu discurso para las preguntas difíciles, tanto de España como de Colombia: por qué una sola empresa, la visa, el tiempo en España.</li>
+      </ul>
+      <div class="takeaway"><b>Te llevas:</b> mapa de empresas priorizado + narrativa profesional en versión corta y extendida.</div>
+    </div>
+
+    <!-- SESION 3 -->
+    <div class="session-card">
+      <div class="session-head">
+        <div class="session-num">3</div>
+        <h3>Visibilidad y networking estratégico — sin tener que "venderte"</h3>
+      </div>
+      <div class="objective">
+        Objetivo: que los reclutadores te encuentren a ti, con un sistema de contacto activo que no dependa de publicar contenido ni de esperar vacantes.
+      </div>
+      <div class="subhead">En esta sesión</div>
+      <ul>
+        <li>Optimizamos tu LinkedIn como radar pasivo: palabras clave exactas para que aparezcas cuando busquen "auditor ISO 9001 España" o "consultor calidad Valladolid".</li>
+        <li>Construimos tu sistema de contacto directo: mensajes cortos a reclutadores y responsables de calidad de tu mapa de empresas, con el estilo directo de un ingeniero que sabe lo que quiere.</li>
+        <li>Activamos la red de tu maestría en Valladolid: profesores, compañeros, convenios universidad-empresa.</li>
+        <li>Te entrego plantillas de mensaje para cada tipo de interlocutor.</li>
+      </ul>
+      <div class="takeaway"><b>Te llevas:</b> LinkedIn optimizado + plantillas de mensaje + plan de activación de red universitaria.</div>
+    </div>
+
+    <!-- SESION 4 -->
+    <div class="session-card">
+      <div class="session-head">
+        <div class="session-num">4</div>
+        <h3>Gestión de procesos activos y entrevistas en contexto europeo</h3>
+      </div>
+      <div class="objective">
+        Objetivo: aprovechar bien tus procesos abiertos y llegar preparado a entrevistas en empresas grandes en España.
+      </div>
+      <div class="subhead">En esta sesión</div>
+      <ul>
+        <li>Hacemos seguimiento de tus procesos activos: cómo avanzar sin parecer desesperado y qué preparar si hay entrevistas próximas.</li>
+        <li>Preparamos respuestas para entrevistas estructuradas por competencias, a veces en inglés: el candidato que conecta es el que demuestra que eligió esa empresa con criterio.</li>
+        <li>Trabajamos la metodología STAR con tus logros más fuertes: la certificación ISO con 2 no conformidades menores, el historial limpio en SAGRILAFT/PTEE/PESV, la reducción de costos.</li>
+        <li>Hablamos del inglés con honestidad: para Bureau Veritas o SGS el B2 activo es casi requisito.</li>
+      </ul>
+      <div class="takeaway"><b>Te llevas:</b> banco de respuestas STAR para tus 5 logros más potentes + plan de seguimiento de procesos activos.</div>
+    </div>
+
+    <!-- SESION 5 -->
+    <div class="session-card">
+      <div class="session-head">
+        <div class="session-num">5</div>
+        <h3>Plan de 90 días — España primero, Colombia como plan B inteligente</h3>
+      </div>
+      <div class="objective">
+        Objetivo: cerrar tu plan de 90 días con acciones concretas en ambos frentes, para que el tiempo en España sea productivo y un eventual retorno a Colombia sea una decisión estratégica, no una derrota.
+      </div>
+      <div class="subhead">En esta sesión</div>
+      <ul>
+        <li>Cerramos tu plan semana a semana: cuántas empresas contactar, cómo hacer seguimiento, cuándo evaluar si un proceso sigue activo.</li>
+        <li>Definimos el "punto de decisión": cuándo encender el plan Colombia, sin esperar al último mes.</li>
+        <li>Para el plan Colombia: cargos de jefatura en calidad, ajustes al CV para ese mercado, y cómo activar tu red desde España.</li>
+        <li>Revisamos cómo seguir aprovechando tu maestría en Valladolid como diferencial, incluso si vuelves a Colombia antes de terminarla.</li>
+      </ul>
+      <div class="takeaway"><b>Te llevas:</b> plan de 90 días semana a semana + plan de activación Colombia con empresas y cargos objetivo.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- NOTA HONESTA -->
+<section>
+  <div class="wrap">
+    <div class="honest-note">
+      💬 <b>Una nota honesta sobre el mercado español como migrante:</b> conseguir trabajo en España con visa de estudiante y menos de un año de permanencia es un proceso que tiene sus propias reglas — permisos de trabajo, homologación de títulos, preferencia por candidatos comunitarios. En CVale podemos ayudarte a optimizar tu perfil, tu estrategia y tu narrativa, pero no somos especialistas en procesos migratorios. Lo que sí podemos hacer es que tu perfil esté tan bien posicionado que sea difícil de ignorar.
+    </div>
+  </div>
+</section>
+
+<!-- PLATAFORMA -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Un complemento opcional</div>
+    <div class="section-title">Plataforma CVale</div>
+    <div class="platform-note">
+      Si en algún momento quieres apoyo adicional entre sesiones, la <b>plataforma CVale</b> está disponible como complemento: simulación de entrevistas con IA, seguimiento de tus postulaciones en un solo lugar, y herramientas de posicionamiento de perfil. No es el centro de esta propuesta — es una herramienta extra para quien la quiera usar.
+    </div>
+  </div>
+</section>
+
+<!-- OBJETIVOS -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Nuestros 4 objetivos juntos</div>
+    <div class="section-title">A dónde queremos llegar</div>
+    <div class="obj-grid">
+      <div class="obj-card">
+        <div class="emoji">🧭</div>
+        <h4>Que entiendas cómo funciona el mercado laboral</h4>
+        <p>Saber cómo se mueve realmente el mercado español, dónde están las oportunidades y cómo buscar empleo de forma activa, no pasiva.</p>
+      </div>
+      <div class="obj-card">
+        <div class="emoji">🗺️</div>
+        <h4>Una estrategia clara para los próximos 90 días</h4>
+        <p>Saber exactamente qué hacer, en qué orden, y con qué empresas — tanto en España como en Colombia.</p>
+      </div>
+      <div class="obj-card">
+        <div class="emoji">🎯</div>
+        <h4>Una narrativa y un perfil que comuniquen tu valor real</h4>
+        <p>Que tus 8 años de experiencia, tus tres posgrados y tus logros medibles hablen solos en el mercado europeo.</p>
+      </div>
+      <div class="obj-card">
+        <div class="emoji">⚡</div>
+        <h4>Visibilidad activa sin tener que "venderte"</h4>
+        <p>Que los reclutadores correctos te encuentren — y que sepas cómo llegar a ellos directamente cuando no publican vacantes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVERSION -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Inversión</div>
+    <div class="section-title">Tres formas de empezar</div>
+
+    <div class="inv-grid">
+      <!-- OPCION A -->
+      <div class="inv-card featured">
+        <div class="badge">Recomendada</div>
+        <h3>Opción A · Paquete completo</h3>
+        <div class="price">$400.000 COP</div>
+        <div class="price-strike">Precio individual: $425.000</div>
+        <div class="price-note">Pago único · las 5 sesiones</div>
+        <ul>
+          <li>1. Mercado laboral y diagnóstico de perfil</li>
+          <li>2. Mapa de empresas y trayectoria</li>
+          <li>3. Visibilidad y networking estratégico</li>
+          <li>4. Procesos activos y entrevistas</li>
+          <li>5. Plan de 90 días</li>
+        </ul>
+        <div class="saving">Ahorras $25.000 COP vs. precio individual</div>
+      </div>
+
+      <!-- OPCION B -->
+      <div class="inv-card">
+        <h3>Opción B · Sesiones a la carta</h3>
+        <div class="price">$85.000 COP</div>
+        <div class="price-note">Por sesión / hora</div>
+        <ul>
+          <li>1. Mercado laboral y diagnóstico de perfil</li>
+          <li>2. Mapa de empresas y trayectoria</li>
+          <li>3. Visibilidad y networking estratégico</li>
+          <li>4. Procesos activos y entrevistas</li>
+          <li>5. Plan de 90 días</li>
+        </ul>
+        <div class="footnote">Eliges cuáles tomar y en qué orden.</div>
+      </div>
+
+      <!-- OPCION C -->
+      <div class="inv-card">
+        <h3>Opción C · Paquete + Plataforma CVale</h3>
+        <div class="price">$600.000 COP</div>
+        <div class="price-note">Pago único · 3 meses de plataforma incluidos</div>
+        <ul>
+          <li>Las 5 sesiones del paquete completo</li>
+          <li>Plan de 90 días</li>
+          <li>+ 3 meses de acceso a plataforma CVale</li>
+        </ul>
+        <div class="footnote">Ideal si quieres seguimiento continuo entre sesiones.</div>
+      </div>
+    </div>
+
+    <div class="schedule-note">
+      📅 Las fechas de cada sesión se fijan de <b>mutuo acuerdo</b>, según tu disponibilidad — sin presiones ni calendarios rígidos.
+    </div>
+    <div class="payment-note">Pagos vía Bancolombia o transferencia internacional, a acordar según el medio que más te convenga. · Los precios están en COP.</div>
+  </div>
+</section>
+
+<!-- BIO -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Quién va a acompañarte</div>
+    <div class="section-title">Esteban Rubiano</div>
+    <div class="bio-card">
+      <div class="bio-photo"><img src="data:image/jpeg;base64,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" alt="Esteban Rubiano"></div>
+      <div class="bio-text">
+        <h3>Esteban Rubiano Giraldo</h3>
+        <div class="role">Fundador de CVale · Profesional en Desarrollo Organizacional</div>
+        <p>
+          Con más de 5 años de experiencia en desarrollo de talento, L&D y HR en entornos multinacionales a lo largo de LATAM y el Caribe, Esteban creó CVale con una convicción clara: encontrar un buen trabajo no debería ser un privilegio. Cree que el empleo es una puerta de acceso a mejor calidad de vida, más tiempo libre y más recursos — y trabaja todos los días para que más personas puedan cruzar esa puerta con estrategia, no con suerte.
+        </p>
+        <div class="bio-links">
+          <a class="bio-link" href="https://www.linkedin.com/in/estebanrubiano/" target="_blank" rel="noopener">in LinkedIn</a>
+          <a class="bio-link" href="https://cvaleco.com" target="_blank" rel="noopener">🌐 cvaleco.com</a>
+          <a class="bio-link" href="https://www.tiktok.com/@cvaleco" target="_blank" rel="noopener">♪ TikTok @cvaleco</a>
+          <a class="bio-link" href="https://www.whatsapp.com/channel/0029VbDO6VDKmCPGgceGA224" target="_blank" rel="noopener">💬 Canal WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section>
+  <div class="wrap">
+    <div class="cta-banner">
+      <h3>Diego, ¿listo para encarar el mercado laboral con estrategia? 🚀</h3>
+      <p>No tienes que hacerlo solo ni improvisar. Con el acompañamiento correcto y las herramientas de CVale, este proceso puede ser completamente diferente: más claro, más rápido y con mucha más confianza.</p>
+      <a class="cta-button" href="https://wa.me/573123545306?text=Hola%20Esteban%2C%20quiero%20empezar%20mi%20proceso%20con%20CVale" target="_blank" rel="noopener">Quiero empezar →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo" style="color:#fff; margin-bottom:6px;">CV<span style="color:#0BA89A;">ale!</span></div>
+    <div>cvaleco.com</div>
+  </div>
+</footer>
+
+</body>
+</html>
